@@ -25,5 +25,7 @@ class Feeder extends Command
         foreach ($messages as $message) {
             Notification::send($message, new NewPostNotification($message)); // artisan queue:work database
         }
+
+        ContentLog::where('is_sent', true)->delete();
     }
 }
