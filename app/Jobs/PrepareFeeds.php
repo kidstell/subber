@@ -3,8 +3,11 @@
 namespace App\Jobs;
 
 use App\Models\Article;
+use App\Models\ContentLog;
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Queue\SerializesModels;
+use App\Http\Controllers\FeedController;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Notifications\NewPostNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -30,11 +33,7 @@ class PrepareFeeds implements ShouldQueue
      */
     public function handle(): void
     {
-        $article = Article::find($this->articleId);
-        $subscribers = $article->subscribers()->get();
-
-        foreach ($subscribers as $subscriber){
-            Notification::send($subscriber, new NewPostNotification($article)); // artisan queue:work database
-        }
+        $feeds = FeedController::getFeedsByArticleId($this->articleId);
+        DB::table((new ContentLog)->getTable())->insert($feeds->toArray());
     }
 }

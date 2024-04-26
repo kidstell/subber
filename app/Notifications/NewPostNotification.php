@@ -2,8 +2,10 @@
 
 namespace App\Notifications;
 
-use App\Models\Article;
+use Exception;
+use App\Models\ContentLog;
 use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Markdown;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -15,7 +17,7 @@ class NewPostNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(public Article $article)
+    public function __construct(public ContentLog $article)
     {
         //
     }
@@ -35,19 +37,12 @@ class NewPostNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $article = $this->article->author->toArray();
-        $author = $article->author->toArray();
-        
         return (new MailMessage)
-                    ->subject('You have a new post notification from '.$author['website'])
+                    ->subject('You have a new post notification from '.$notifiable->website)
                     ->greeting('Hello ' . $notifiable->name . ',')
-                    ->line("You are receiving this notification because you are subscribed to {$author['website']}. If you do wish to unsubscribe, please call the customer service.\n")
+                    ->line("You are receiving this notification because you are subscribed to {$notifiable->website}. If you do wish to unsubscribe, please call the customer service.\n")
                     ->line('')
-                    ->line('<blockquote style="margin: 0 0 0 40px; border-left: 2px solid #ccc; padding-left: 10px;">')
-                    ->line("*Title*: {$article->title}")
-                    ->line("*Text*: {$article->body}")
-                    ->line('</blockquote>')
-                    // ->action('Notification Action', url('/'))
+                    ->line(\Illuminate\Mail\Markdown::parse("> **_Title_**: {$notifiable->title}  \n**_Text_**: {$notifiable->body}"))
                     ->line('')
                     ->line('Thank you for using our Subber!');
     }

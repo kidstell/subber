@@ -16,6 +16,12 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('author_id')->constrained();
             $table->foreignId('article_id')->constrained();
+            $table->string('published_at');
+            $table->string('title');
+            $table->string('body');
+            $table->string('name');
+            $table->string('email');
+            $table->string('website');
             $table->boolean('is_sent')->default(false);
             $table->timestamps();
         });

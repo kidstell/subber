@@ -28,7 +28,7 @@ class ArticleController extends Controller
         $data = $request->only(['title','body']);
 
         $article = Article::create([...$data, 'author_id' => $author->id]);
-        PrepareFeeds::dispatch($article->id, $article->author_id);
+        PrepareFeeds::dispatch($article->id, $author->key);
 
         return response()->json(["message" => "Your new post has been created successfully."]);
     }

@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
-class ContentLog extends Model
+class ContentLog extends Model 
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 }
