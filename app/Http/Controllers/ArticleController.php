@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Article;
+use App\Jobs\PrepareFeeds;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -24,7 +26,9 @@ class ArticleController extends Controller
         }
 
         $data = $request->only(['title','body']);
-        $author->articles()->create($data);
+
+        $article = Article::create([...$data, 'author_id' => $author->id]);
+        PrepareFeeds::dispatch($article->id, $article->author_id);
 
         return response()->json(["message" => "Your new post has been created successfully."]);
     }
