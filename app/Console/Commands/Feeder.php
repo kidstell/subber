@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Notification;
 
 class Feeder extends Command
 {
-    protected $signature = 'feeder {Webkeys?*}';
-    protected $description = 'Initiates sending of feeds to Users when there is a new post from authors they are subscribed to. Webkeys are optional';
+    protected $signature = 'feeder';
+    protected $description = 'Initiates sending of feeds to Users when there is a new post from authors they are subscribed to.';
 
     public function handle()
     {
