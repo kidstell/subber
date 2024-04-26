@@ -30,7 +30,6 @@ class PrepareFeeds implements ShouldQueue
      */
     public function handle(): void
     {
-        file_put_contents('see.html', 'o ga ooooo');
         $article = Article::find($this->articleId);
         $subscribers = $article->subscribers()->get();
 

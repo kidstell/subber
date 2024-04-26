@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('author_id')->constrained();
             $table->foreignId('article_id')->constrained();
+            $table->boolean('is_sent')->default(false);
             $table->timestamps();
         });
     }

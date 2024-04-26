@@ -12,20 +12,20 @@ class FeedController extends Controller
 {
     static function getFeeds($websiteKeys) {
 
-        $su = (new Subscription())->getTable();
-        $au = (new Author())->getTable();
-        $us = (new User())->getTable();
-        $ar = (new Article())->getTable();
+        $subscriptions = (new Subscription())->getTable();
+        $authors = (new Author())->getTable();
+        $users = (new User())->getTable();
+        $articles = (new Article())->getTable();
 
         $feeds = Subscription::select([
-            "{$su}.created_at", "{$ar}.created_at", "{$au}.website", "{$ar}.title", "{$ar}.body", "{$us}.name", "{$us}.email"
+            "{$subscriptions}.created_at", "{$articles}.created_at", "{$authors}.website", "{$articles}.title", "{$articles}.body", "{$users}.name", "{$users}.email"
         ])
-        ->leftJoin("{$au}", "{$au}.id", "=", "{$su}.author_id")
-        ->leftJoin("{$us}", "{$us}.id", "=", "{$su}.user_id")
-        ->leftJoin("{$ar}", "{$ar}.author_id", "=", "{$su}.author_id");
+        ->leftJoin("{$authors}", "{$authors}.id", "=", "{$subscriptions}.author_id")
+        ->leftJoin("{$users}", "{$users}.id", "=", "{$subscriptions}.user_id")
+        ->leftJoin("{$articles}", "{$articles}.author_id", "=", "{$subscriptions}.author_id");
 
         if ( ! empty($websiteKeys) ){
-            $feeds->whereIn("{$au}.key", $websiteKeys);
+            $feeds->whereIn("{$authors}.key", $websiteKeys);
         }
         
         return $feeds->get();
