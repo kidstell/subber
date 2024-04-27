@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "87e8e63d-ef0c-42ae-a676-2bb868a18f12",
+		"name": "Subber API",
+		"description": "API endpoint for:\n\n1. Subscribing user to a feed\n    \n2. Creating new post for the websites",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "4481441"
+	},
+	"item": [
+		{
+			"name": "new_post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "sample title",
+							"type": "text"
+						},
+						{
+							"key": "body",
+							"value": "samle body text ettttttt",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "website4",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8000/api/author/post/create",
+				"description": "create new post for the website"
+			},
+			"response": []
+		},
+		{
+			"name": "user_subscribe",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "user4@userland.test",
+							"type": "text"
+						},
+						{
+							"key": "website",
+							"value": "https://website4.test",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://127.0.0.1:8000/api/user/subscribe",
+				"description": "subscribe a user to specific website"
+			},
+			"response": []
+		}
+	]
+}

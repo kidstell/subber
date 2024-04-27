@@ -52,7 +52,7 @@ echo "SQLite DB created successfully";
 
 
 echo "\ninstalling... ";
-$config = ['DB_CONNECTION' => 'sqlite', 'DB_DATABASE' => $dbPath, 'MAIL_HOST' => 'localhost', 'MAIL_PORT' => 1025];
+$config = ['DB_CONNECTION' => 'sqlite', 'DB_DATABASE' => $dbPath, 'MAIL_HOST' => 'localhost', 'MAIL_PORT' => 1025, 'QUEUE_CONNECTION' => 'database'];
 $lines = file('.env');
 $updates = 0;
 foreach ($lines as $idx => $line) {
@@ -67,10 +67,10 @@ foreach ($lines as $idx => $line) {
 }
 $file = file_put_contents('.env', implode('',$lines));
 if ($file === false) {
-    echo "\nError: Failed to configure Database and Email server parameters in .env\nYou can do this manually in the .env file.\n".json_encode($config);
+    echo "\nError: Failed to configure application parameters in .env\nYou can do this manually in the .env file.\n".json_encode($config);
     exit;
 }
-echo "Database and Email server parameters configured successfully";
+echo "Application parameters configured successfully";
 
 
 
