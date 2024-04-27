@@ -6,7 +6,7 @@ echo "\ninstalling... ";
 // make sure composer is globally installed
 $output = [];
 $returnCode = 0;
-// exec('composer install', $output, $returnCode);
+exec('composer install', $output, $returnCode);
 if ($returnCode !== 0) {
     echo "\nError: Composer install failed";
     printf("\n".implode("",$output));
@@ -104,7 +104,7 @@ echo "\n\nEsure your email server is running. configure the email host/ip and po
 echo "\n\nWhen you want to push the feeds, simply run `php artisan feeder` - this would collate all pending feeds and send as email to the subscribers";
 
 
-// unlink(__FILE__);
+unlink(__FILE__);
 
 
 
