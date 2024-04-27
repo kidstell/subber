@@ -18,11 +18,14 @@ class Feeder extends Command implements Isolatable
         $messages = ContentLog::where('is_sent', false)
                 ->orderBy('article_id', 'asc')
                 ->get();
+        
+        $this->comment(count($messages).' pending subscription feeds found');
+        $this->comment('Processing...');
 
         foreach ($messages as $message) {
             Notification::send($message, new NewPostNotification($message)); // artisan queue:work database
         }
-
         ContentLog::where('is_sent', true)->delete();
+        $this->comment('Done');
     }
 }
