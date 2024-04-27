@@ -100,9 +100,9 @@ echo "Database seeded successfully";
 
 echo "\ninstalling... Done.";
 
-echo "\n\nEsure your email server is running. configure the email host/ip and port in the env file.\n\nNow run `php artisan queue:work` - this would manage background jobs.";
+echo "\n\nEsure your email server is running. Configure the email host/ip and port in the env file.\n\nNow run `php artisan queue:work` - this would manage background jobs.";
 echo "\n\nWhen you want to push the feeds, simply run `php artisan feeder` - this would collate all pending feeds and send as email to the subscribers";
-
+echo "\n\nOpen the README.md file";
 
 unlink(__FILE__);
 
