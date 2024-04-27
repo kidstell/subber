@@ -2,17 +2,14 @@
 
 namespace App\Jobs;
 
-use App\Models\Article;
 use App\Models\ContentLog;
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Queue\SerializesModels;
 use App\Http\Controllers\FeedController;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Notifications\NewPostNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Support\Facades\Notification;
 
 class PrepareFeeds implements ShouldQueue
 {

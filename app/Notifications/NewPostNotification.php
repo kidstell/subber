@@ -42,7 +42,7 @@ class NewPostNotification extends Notification
                     ->greeting('Hello ' . $notifiable->name . ',')
                     ->line("You are receiving this notification because you are subscribed to {$notifiable->website}. If you do wish to unsubscribe, please call the customer service.\n")
                     ->line('')
-                    ->line(\Illuminate\Mail\Markdown::parse("> **_Title_**: {$notifiable->title}  \n**_Text_**: {$notifiable->body}"))
+                    ->line(Markdown::parse("> **_Title_**: {$notifiable->title}  \n**_Text_**: {$notifiable->body}"))
                     ->line('')
                     ->line('Thank you for using our Subber!');
     }

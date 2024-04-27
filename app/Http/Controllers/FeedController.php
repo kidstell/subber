@@ -7,7 +7,6 @@ use App\Models\Author;
 use App\Models\Article;
 use Illuminate\Support\Arr;
 use App\Models\Subscription;
-use Illuminate\Http\Request;
 
 class FeedController extends Controller
 {

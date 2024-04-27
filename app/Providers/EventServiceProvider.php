@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use App\Listeners\NewPostNotificationSent;
 use App\Listeners\NewPostNotificationSending;

@@ -2,16 +2,13 @@
 
 namespace App\Console\Commands;
 
-use App\Models\User;
-use App\Models\Author;
-use App\Models\Article;
 use App\Models\ContentLog;
-use App\Models\Subscription;
 use Illuminate\Console\Command;
 use App\Notifications\NewPostNotification;
+use Illuminate\Contracts\Console\Isolatable;
 use Illuminate\Support\Facades\Notification;
 
-class Feeder extends Command
+class Feeder extends Command implements Isolatable
 {
     protected $signature = 'feeder';
     protected $description = 'Initiates sending of feeds to Users when there is a new post from authors they are subscribed to.';
