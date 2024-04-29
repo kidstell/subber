@@ -9,7 +9,7 @@ Install mailpit for test environment.
 By default mailpit runs on localhost and port 1025.
 If your paramaters are different. please adjust the .env configuration file.
 
-Download, install and run mailpit,
+Download, install and run mailpit (https://github.com/axllent/mailpit),
 make sure that mailpit terminal remains open.
 
 Open a command terminal and run `php artisan serve`.
